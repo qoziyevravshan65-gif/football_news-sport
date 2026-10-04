@@ -195,3 +195,237 @@
 
 <!-- ======================================================= -->
 <!--
+html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futbol Yangiliklari va Turnir</title>
+    <style>
+        body {
+            background-color: #0b0b16;
+            color: white;
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .form-container {
+            background-color: #121225;
+            border: 1px solid #232343;
+            border-radius: 12px;
+            padding: 20px;
+            width: 100%;
+            max-width: 450px;
+            box-sizing: border-box;
+        }
+        .form-container h3 {
+            color: #00ff66;
+            margin-top: 0;
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            background-color: #0f0f1e;
+            border: 1px solid #1f1f3a;
+            border-radius: 6px;
+            color: white;
+            box-sizing: border-box;
+        }
+        .input-field:focus {
+            border-color: #00ff66;
+            outline: none;
+        }
+        textarea.input-field {
+            height: 120px;
+        }
+        .file-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #a0a0b0;
+        }
+        .submit-btn {
+            background-color: #00ff66;
+            color: #0b0b16;
+            border: none;
+            border-radius: 6px;
+            padding: 12px;
+            width: 100%;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 15px;
+        }
+        .submit-btn:hover {
+            background-color: #00dd55;
+        }
+        .news-feed {
+            width: 100%;
+            max-width: 450px;
+            margin-top: 25px;
+        }
+        .news-card {
+            background-color: #121225;
+            border: 1px solid #232343;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .news-card img {
+            width: 100%;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        .img-caption {
+            font-size: 13px;
+            color: #a0a0b0;
+            font-style: italic;
+            margin: 6px 0 12px 0;
+            padding-left: 6px;
+            border-left: 2px solid #00ff66;
+        }
+        .news-actions {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #1f1f3a;
+        }
+        .action-btn {
+            background: none;
+            border: none;
+            color: #b0b0c0;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .action-btn.liked {
+            color: #ff3366;
+            font-weight: bold;
+        }
+        .read-more {
+            display: inline-block;
+            color: #00ff66;
+            text-decoration: none;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .read-more:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h3>⚽ Qaynoq futbol yangiligi qo'shish</h3>
+        <input type="text" id="title-input" class="input-field" placeholder="Yangilik sarlavhasi">
+        <input type="text" id="category-input" class="input-field" placeholder="Kategoriya / Liga">
+        
+        <label class="file-label">Yangilik rasmini yuklang:</label>
+        <input type="file" id="image-file-input" class="input-field" accept="image/*">
+        
+        <input type="text" id="caption-input" class="input-field" placeholder="Rasm ostidagi qisqa matn (izoh)">
+        <input type="url" id="link-input" class="input-field" placeholder="Batafsil ma'lumot havolasi (URL)">
+        
+        <textarea id="details-input" class="input-field" placeholder="Batafsil xabar tafsilotlarini bu yerga to'liq yozing..."></textarea>
+        
+        <button class="submit-btn" onclick="publishNews()">🚀 Yangilikni Chop Etish</button>
+    </div>
+
+    <div class="news-feed" id="news-feed-container"></div>
+
+    <script>
+        let likedNews = JSON.parse(localStorage.getItem('likedNews')) || {};
+
+        function publishNews() {
+            const title = document.getElementById('title-input').value;
+            const category = document.getElementById('category-input').value;
+            const imageFileInput = document.getElementById('image-file-input');
+            const caption = document.getElementById('caption-input').value;
+            const newsLink = document.getElementById('link-input').value;
+            const details = document.getElementById('details-input').value;
+
+            if (!title || !details) {
+                alert("Iltimos, sarlavha va batafsil xabar tafsilotlarini kiriting!");
+                return;
+            }
+
+            const newsId = 'news_' + Date.now();
+            const feedContainer = document.getElementById('news-feed-container');
+            const card = document.createElement('div');
+            card.className = 'news-card';
+            card.setAttribute('data-id', newsId);
+
+            let cardHTML = 
+                <span style="font-size: 12px; color: #00ff66; font-weight:bold;">${category ? category : 'UMUMIY'}</span>
+                <h3 style="margin: 5px 0 10px 0; font-size: 20px;">${title}</h3>
+                <div class="news-card-img-container"></div>
+                <div class="news-card-text-content">
+            ;
+
+            if (caption) {
+                cardHTML += <div class="img-caption">⚽ ${caption}</div>;
+            }
+
+            cardHTML += <p style="font-size: 14px; color: #d0d0e0; line-height: 1.6; white-space: pre-wrap;">${details}</p>;
+
+            if (newsLink) {
+                cardHTML += <a href="${newsLink}" target="_blank" class="read-more">Batafsil o'qish ➔</a>;
+            }
+            cardHTML += </div>;
+
+            cardHTML += 
+                <div class="news-actions">
+                    <button class="action-btn" onclick="toggleLike('${newsId}', this)">❤️ <span>0</span></button>
+                    <button class="action-btn" onclick="alert('Kommentariya bo\'limi tez kunda ishga tushadi!')">💬 <span>0</span></button>
+                    <button class="action-btn" onclick="navigator.clipboard.writeText('${newsLink || window.location.href}'); alert('Havola nusxalandi!');">↪️ Share</button>
+                </div>
+            ;
+
+            card.innerHTML = cardHTML;
+            feedContainer.insertBefore(card, feedContainer.firstChild);
+
+            if (imageFileInput.files && imageFileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imgElement = document.createElement('img');
+                    imgElement.src = e.target.result;
+                    card.querySelector('.news-card-img-container').appendChild(imgElement);
+                }
+                reader.readAsDataURL(imageFileInput.files[0]);
+            }
+
+            document.getElementById('title-input').value = '';
+            document.getElementById('category-input').value = '';
+            document.getElementById('image-file-input').value = '';
+            document.getElementById('caption-input').value = '';
+            document.getElementById('link-input').value = '';
+            document.getElementById('details-input').value = '';
+        }
+
+        function toggleLike(newsId, btn) {
+            const span = btn.querySelector('span');
+            let currentLikes = parseInt(span.innerText);
+
+            if (likedNews[newsId]) {
+                currentLikes--;
+                span.innerText = currentLikes;
+                btn.classList.remove('liked');
+                delete likedNews[newsId];
+            } else {
+                currentLikes++;
+                span.innerText = currentLikes;
+                btn.classList.add('liked');
+                likedNews[newsId] = true;
+            }
+
+            localStorage.setItem('likedNews', JSON.stringify(likedNews));
+        }
+    </script>
+</body>
+</html>

@@ -3,122 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Futbol Blogi — Neon Premium Edition</title>
+    <title>Futbol Yangiliklari Portali</title>
     <style>
-        /* 1. RANG-BARANG JONLI FON (NEON STYLES) */
+        /* TOZA VA PROFESSIONAL QORA SPORT DIZAYNI */
         body {
-            background: linear-gradient(135deg, #050510 0%, #0a0a24 50%, #03140a 100%);
-            color: #f1f1f5;
-            font-family: sans-serif;
+            background-color: #0b0b16;
+            color: white;
+            font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 20px;
             margin: 0;
-            min-height: 100vh;
         }
 
-        /* 2. JONLI NEONLI LIVE-SCORE PANEL */
-        .live-ticker {
+        /* 1. KATTA EKRANDA FUTBOLCHILARNING ALMASHIB TURUVCHI BANNERI (SLIDESHOW) */
+        .football-slider {
             width: 100%;
-            background: linear-gradient(90deg, #ff0055, #00ff66, #00d2ff);
-            background-size: 300% 300%;
-            animation: colorFlow 6s ease infinite;
-            padding: 3px 0;
-            box-shadow: 0 0 15px rgba(0, 255, 102, 0.4);
-            margin-bottom: 20px;
-        }
-        .ticker-inner {
-            background: #080816;
-            padding: 10px 0;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            overflow-x: auto;
-        }
-        .match-box {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(0, 255, 102, 0.3);
-            padding: 6px 15px;
-            border-radius: 6px;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 13px;
-            box-shadow: 0 0 8px rgba(0, 255, 102, 0.1);
-        }
-        .live-badge {
-            background-color: #ff0055;
-            color: white;
-            font-size: 10px;
-            padding: 2px 5px;
-            border-radius: 3px;
-            font-weight: bold;
-            animation: blink 1.5s infinite;
-            box-shadow: 0 0 8px #ff0055;
-        }
-        @keyframes blink { 0% {opacity:0.4;} 50% {opacity:1;} 100% {opacity:0.4;} }
-        @keyframes colorFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* RANG-BARANG TOWLANUVCHI BLOKLAR */
-        .table-card, .form-container, .news-card {
-            background: rgba(18, 18, 37, 0.85);
-            backdrop-filter: blur(10px);
-            border: 2px solid transparent;
-            border-image: linear-gradient(45deg, #00ff66, #00d2ff, #ff0055) 1;
-            border-radius: 12px; /* Nota: Border-image ishlatilganda ba'zi brauzerlarda chiqmasligi mumkin */
-            box-shadow: 0 5px 20px rgba(0,0,0,0.6);
-            padding: 20px;
+            max-width: 420px;
+            height: 230px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
             margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0, 255, 102, 0.2);
+            border: 1px solid #232343;
+        }
+        .slides-container {
             width: 100%;
-            max-width: 450px;
-            box-sizing: border-box;
+            height: 100%;
+            display: flex;
             position: relative;
         }
-
-        /* Maxsus oyna chetlari uchun qo'shimcha dizayn */
-        .news-card {
-            border: 1px solid rgba(0, 210, 255, 0.3) !important;
-            border-radius: 12px !important;
-            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.1);
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
         }
-        .news-card:hover {
-            box-shadow: 0 4px 20px rgba(0, 255, 102, 0.2);
-            border-color: #00ff66 !important;
+        .slide.active {
+            opacity: 1;
         }
-
-        .table-card h4, .form-container h3 {
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .slide-title {
+            position: absolute;
+            bottom: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+            width: 100%;
+            padding: 15px 10px 10px 10px;
+            box-sizing: border-box;
             color: #00ff66;
-            text-shadow: 0 0 10px rgba(0, 255, 102, 0.5);
-            margin-top: 0;
+            font-weight: bold;
+            font-size: 15px;
+            text-shadow: 1px 1px 3px black;
         }
 
-        /* INPUTLAR DIZAYNI */
+        /* YANGILIK QO'SHISH ANKETASI */
+        .form-container {
+            background-color: #121225;
+            border: 1px solid #232343;
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+            max-width: 420px;
+            box-sizing: border-box;
+            margin-bottom: 25px;
+        }
+        .form-container h3 {
+            color: #00ff66;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        /* ELEMENTLAR OYNASI */
         .input-field {
             width: 100%;
-            padding: 11px;
+            padding: 10px;
             margin-bottom: 15px;
-            background-color: #050510;
+            background-color: #0f0f1e;
             border: 1px solid #1f1f3a;
             border-radius: 6px;
             color: white;
             box-sizing: border-box;
-            transition: 0.3s;
+            font-size: 14px;
         }
         .input-field:focus {
-            border-color: #00d2ff;
-            box-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+            border-color: #00ff66;
             outline: none;
         }
-        textarea.input-field { height: 90px; }
+        textarea.input-field {
+            height: 90px;
+        }
 
+        /* CHOP ETISH TUGMASI */
         .submit-btn {
-            background: linear-gradient(45deg, #00ff66, #00d2ff);
-            color: #050510;
+            background-color: #00ff66;
+            color: #0b0b16;
             border: none;
             border-radius: 6px;
             padding: 12px;
@@ -126,106 +111,91 @@
             font-weight: bold;
             cursor: pointer;
             font-size: 15px;
-            box-shadow: 0 0 10px rgba(0, 255, 102, 0.4);
-            transition: 0.3s;
+            transition: 0.2s;
         }
         .submit-btn:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 15px rgba(0, 210, 255, 0.6);
+            background-color: #00dd55;
         }
 
-        /* MULTI-COLOR BADGES (RANG-BARANG NISHONLAR) */
-        .own-badge {
-            font-size: 10px;
-            background: linear-gradient(45deg, #00ff66, #00d2ff);
-            color: black;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-weight: bold;
-            text-shadow: 0 0 2px rgba(255,255,255,0.5);
+        /* YANGILIKLAR TASMASI */
+        .news-feed {
+            width: 100%;
+            max-width: 420px;
         }
-        .admin-badge {
-            font-size: 10px;
-            background: linear-gradient(45deg, #ff0055, #ffcc00);
-            color: white;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-weight: bold;
-            box-shadow: 0 0 8px #ff0055;
+        .news-card {
+            background-color: #121225;
+            border: 1px solid #232343;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
         }
-
         .news-card img {
             width: 100%;
-            border-radius: 8px;
+            border-radius: 6px;
             margin-top: 10px;
-            border: 1px solid rgba(255,255,255,0.1);
+            display: block;
         }
         .img-caption {
             font-size: 13px;
             color: #a0a0b0;
             font-style: italic;
-            margin: 8px 0 12px 0;
+            margin: 6px 0 12px 0;
             padding-left: 6px;
-            border-left: 3px solid #00d2ff;
+            border-left: 2px solid #00ff66;
         }
 
-        /* REAKSIYALAR VA AKSIYALAR */
+        /* REAKSIYALAR */
         .news-actions {
             display: flex;
             justify-content: space-around;
             margin-top: 15px;
             padding-top: 10px;
-            border-top: 1px solid rgba(255,255,255,0.08);
+            border-top: 1px solid #1f1f3a;
         }
         .action-btn {
             background: none;
             border: none;
-            color: #a0a0b0;
+            color: #b0b0c0;
             cursor: pointer;
             font-size: 14px;
             display: flex;
             align-items: center;
             gap: 5px;
-            transition: 0.2s;
         }
-        .action-btn:hover { color: #00ff66; text-shadow: 0 0 8px #00ff66; }
-        
-        /* LAYK BOSILGANDAGI NEON YURAK */
+        .action-btn:hover {
+            color: #00ff66;
+        }
         .action-btn.liked {
-            color: #ff0055 !important;
+            color: #ff3366 !important;
             font-weight: bold;
-            filter: drop-shadow(0 0 8px #ff0055);
-            transform: scale(1.1);
         }
-
         .read-more {
             display: inline-block;
             color: #00ff66;
             text-decoration: none;
             font-size: 14px;
             margin-top: 10px;
-            font-weight: bold;
         }
 
-        /* JADVAL */
-        .mini-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-        .mini-table th { color: #00d2ff; text-align: left; padding-bottom: 8px; }
-        .mini-table td { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-
+        /* KOMMENTARIYA BO'LIMI */
         .comments-section {
             margin-top: 15px;
-            background-color: #050510;
+            background-color: #0f0f1e;
             padding: 10px;
             border-radius: 6px;
-            border: 1px solid rgba(0, 255, 102, 0.1);
         }
         .comment-item {
             font-size: 13px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            padding: 6px 0;
+            border-bottom: 1px solid #1f1f3a;
+            padding: 5px 0;
             color: #d0d0e0;
         }
-        .comment-input-box { display: flex; gap: 5px; margin-top: 10px; }
+        .comment-input-box {
+            display: flex;
+            gap: 5px;
+            margin-top: 10px;
+        }
         .comment-input {
             flex: 1;
             padding: 6px;
@@ -235,47 +205,82 @@
             color: white;
             font-size: 12px;
         }
-        .comment-input:focus { border-color: #00d2ff; outline: none; }
         .comment-btn {
-            background: #00ff66; color: black; border: none; padding: 0 10px;
-            border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold;
+            background: #00ff66;
+            color: black;
+            border: none;
+            padding: 0 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
         }
         .delete-btn {
-            position: absolute; top: 18px; right: 18px; background: none;
-            border: none; color: #ff0055; cursor: pointer; font-size: 12px; display: none;
-            text-shadow: 0 0 5px #ff0055;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #ff3366;
+            cursor: pointer;
+            font-size: 12px;
+            display: none;
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. RGB JONLI TABLO -->
-    <div class="live-ticker">
-        <div class="ticker-inner">
-            <div class="match-box"><span class="live-badge">74'</span> <span>Real Madrid</span> <b>2 - 1</b> <span>Atletiko</span></div>
-            <div class="match-box"><span class="live-badge">42'</span> <span>Barselona</span> <b>1 - 0</b> <span>Sevilya</span></div>
+    <!-- 1. KATTA EKRANDA ALMASHIB TURUVCHI JONLI SLIDER -->
+    <div class="football-slider">
+        <div class="slides-container">
+            <div class="slide active">
+                <img src="https://picsum.photos" alt="Ronaldu">
+                <div class="slide-title">🔥 Chempionlar Ligasi qaytmoqda!</div>
+            </div>
+            <div class="slide">
+                <img src="https://marca.com" alt="El Clasico">
+                <div class="slide-title">🏆 El-Klasiko bahsi yaqinlashmoqda!</div>
+            </div>
+            <div class="slide">
+                <img src="https://picsum.photos" alt="Lamine Yamal">
+                <div class="slide-title">⚡ Yosh yulduzlar yashil maydonda jang qilmoqda!</div>
+            </div>
+            <div class="slide">
+                <img src="https://picsum.photos" alt="Stadion">
+                <div class="slide-title">🏟️ Buyuk stadionlar uchrashuvlarga tayyor!</div>
+            </div>
         </div>
     </div>
 
-    <!-- 2. NEONLI TURNIR JADVALI -->
-    <div class="table-card">
-        <h4>📊 Ispaniya La Liga • Turnir jadvali</h4>
-        <table class="mini-table">
-            <thead><tr><th>T/r</th><th>Jamoa</th><th>O'</th><th>Ochko</th></tr></thead>
-            <tbody>
-                <tr><td>1</td><td><b style="color:#00ff66;">Barselona</b></td><td>8</td><td><b>21</b></td></tr>
-                <tr><td>2</td><td><b style="color:#00d2ff;">Real Madrid</b></td><td>8</td><td><b>20</b></td></tr>
-                <tr><td>3</td><td><b style="color:#ffcc00;">Atletiko M</b></td><td>8</td><td><b>17</b></td></tr>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- ADMIN PANEL -->
+    <!-- ANKETA PANELI -->
     <div class="form-container">
-        <h3>⚽ Maqola va Rasm Chop Etish</h3>
-        <input type="password" id="admin-password" class="input-field" placeholder="Admin maxfiy kaliti (2026)">
+        <h3>⚽ Qaynoq futbol yangiligi qo'shish</h3>
+        <input type="password" id="admin-password" class="input-field" placeholder="Admin parolini kiriting (2026)">
         <input type="text" id="title-input" class="input-field" placeholder="Yangilik sarlavhasi">
         <input type="text" id="category-input" class="input-field" placeholder="Kategoriya / Liga">
-        <label style="font-size: 12px; color: #a0a0b0; display:block; margin-bottom:5px;">Fotosurat tanlang:</label>
+        
+        <label style="font-size: 12px; color: #a0a0b0; display:block; margin-bottom:5px;">Yangilik rasmini yuklang:</label>
         <input type="file" id="image-file-input" class="input-field" accept="image/*">
-        <input type="text" id="caption-input" class="input-field" placeholder="Rasm ostidagi qisqa matn">
+        
+        <input type="text" id="caption-input" class="input-field" placeholder="Rasm ostidagi matn (izoh)">
+        <input type="url" id="link-input" class="input-field" placeholder="Batafsil ma'lumot havolasi (URL)">
+        <textarea id="details-input" class="input-field" placeholder="Xabar tafsilotlarini bu yerga yozing..."></textarea>
+        
+        <button class="submit-btn" onclick="publishNews()">Yangilikni Chop Etish</button>
+    </div>
+
+    <!-- YANGILIKLAR TASMASI -->
+    <div class="news-feed" id="news-feed-container">
+        
+        <!-- DOIMIY EL-KLASIKO XABARI -->
+        <div class="news-card" data-id="el_clasico_2026">
+            <span style="font-size: 12px; color: #00ff66; font-weight:bold;">LA LIGA / ISPANIYA</span>
+            <h3 style="margin: 5px 0 10px 0; font-size: 20px;">Dunyo futboli diqqat markazida: Navbatdagi "El-Klasiko" sanasi rasman e'lon qilindi!</h3>
+            <img src="https://marca.com" alt="El Clasico">
+            <div class="img-caption">⚽ "Spotify Camp Nou" stadioni uzoq kutilgan buyuk to‘qnashuvga mezbonlik qiladi.</div>
+            <p style="font-size: 14px; color: #d0d0e0; line-height: 1.6; white-space: pre-wrap;">La Liganing rasmiy taqvimiga ko‘ra, joriy mavsumdagi ilk to‘qnashuv 2026-yilning 25-oktabr, yakshanba kuni Barselonadagi muhtasham "Spotify Camp Nou" stadionida bo‘lib o‘tadi.</p>
+            <a href="https://marca.com" target="_blank" class="read-more">Batafsil o'qish ➔</a>
+            
+            <div class="news-actions">
+                <button class="action-btn" onclick="toggleLike('el_clasico_2026', this)">❤️ <span class="like-count">0</span></button>
+                <button class="action-btn" onclick="toggleComments('el_clasico_2026')">💬 <span class="comment-count">0</span></button>

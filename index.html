@@ -76,3 +76,122 @@
 
 </body>
 </html>
+<!-- ======================================================= -->
+<!-- SHU YERDAN PASTINI NUSXALAB, INDEX.HTML OXIRIGA QO'SHING -->
+<!-- ======================================================= -->
+
+<!-- Yangi kiritish maydonlari (Buni mavjud formangiz ichiga moslab oladi) -->
+<style>
+    /* Yangi qo'shilgan elementlar va reaksiyalar uchun chiroyli qora-yashil dizayn */
+    .additional-fields input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 12px;
+        background-color: #121225;
+        border: 1px solid #232343;
+        border-radius: 6px;
+        color: white;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+    .additional-fields input:focus {
+        border-color: #00ff66;
+        outline: none;
+    }
+    /* Chop etilgan yangilik kartochkasi dizayni */
+    .news-card {
+        background-color: #0f0f1e;
+        border: 1px solid #1f1f3a;
+        border-radius: 10px;
+        padding: 15px;
+        margin-top: 25px;
+        color: white;
+        font-family: sans-serif;
+    }
+    .news-card img {
+        width: 100%;
+        border-radius: 8px;
+        margin-top: 10px;
+    }
+    .img-caption {
+        font-size: 13px;
+        color: #a0a0b0;
+        font-style: italic;
+        margin: 6px 0 12px 0;
+        padding: 0 4px;
+        border-left: 2px solid #00ff66;
+    }
+    .news-actions {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 15px;
+        padding-top: 10px;
+        border-top: 1px solid #1f1f3a;
+    }
+    .action-btn {
+        background: none;
+        border: none;
+        color: #b0b0c0;
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        transition: 0.2s;
+    }
+    .action-btn:hover {
+        color: #00ff66;
+        transform: scale(1.05);
+    }
+    .read-more {
+        display: inline-block;
+        margin-top: 10px;
+        color: #00ff66;
+        text-decoration: none;
+        font-size: 14px;
+    }
+    .read-more:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<!-- Yangi oynachalar (Formaga integratsiya qilish uchun) -->
+<div class="additional-fields" style="padding: 0 15px;">
+    <input type="url" id="news-image-url" placeholder="Yangilik uchun rasm havolasi (URL)">
+    <input type="text" id="image-caption" placeholder="Rasm ostidagi qisqa matn (izoh)">
+    <input type="url" id="news-link" placeholder="Batafsil ma'lumot havolasi (URL)">
+</div>
+
+<!-- Namuna: Yangilik chop etilganda pastda qanday ko'rinishi -->
+<div class="news-card">
+    <span style="font-size: 12px; color: #00ff66; text-transform: uppercase;">El-Klasiko</span>
+    <h3 style="margin: 5px 0 10px 0;">"Real Madrid" va "Barselona" uchrashuvi sanasi belgilandi</h3>
+    
+    <!-- Rasm -->
+    <img src="https://picsum.photos" alt="Futbol">
+    
+    <!-- Siz so'ragan rasm tagidagi matn -->
+    <div class="img-caption">⚽ Jamoalarning oxirgi to'qnashuvidan olingan surat.</div>
+    
+    <p style="font-size: 14px; color: #d0d0e0; line-height: 1.5; margin: 0;">
+        Uzoq kutilgan bahs kelasi oyning boshida bo'lib o'tadi. Har ikki klub ham o'yinga jiddiy tayyorgarlik ko'rmoqda...
+    </p>
+    
+    <!-- Batafsil link -->
+    <a href="https://github.com" target="_blank" class="read-more">Batafsil o'qish ➔</a>
+    
+    <!-- Layk, Komment, Share belgilari -->
+    <div class="news-actions">
+        <button class="action-btn" onclick="let s=this.querySelector('span'); s.innerText=parseInt(s.innerText)+1;">❤️ <span>0</span></button>
+        <button class="action-btn" onclick="alert('Kommentariya qoldirish bo\'limi tez kunda ishga tushadi!')">💬 <span>0</span></button>
+        <button class="action-btn" onclick="navigator.clipboard.writeText(window.location.href); alert('Havola nusxalandi! Do\'stlaringizga ulashing.');">↪️ Share</button>
+    </div>
+</div>
+
+<script>
+    // Bu yerga keyinchalik "Yangilikni Chop Etish" tugmasini bosganda 
+    // yuqoridagi yangi ma'lumotlarni ham qo'shib chiqaradigan kodni bog'laymiz.
+</script>
+
+<!-- ======================================================= -->
+<!--

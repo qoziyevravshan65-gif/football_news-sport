@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futbol Yangiliklari & Turnir</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0f172a; color: #f8fafc; padding-bottom: 5px; }
+        header { background-color: #1e3a8a; color: #facc15; padding: 25px; text-align: center; border-bottom: 4px solid #facc15; }
+        nav { background-color: #1e40af; padding: 12px; text-align: center; }
+        nav a { color: white; text-decoration: none; margin: 0 20px; font-weight: bold; font-size: 16px; }
+        nav a:hover { color: #facc15; text-decoration: underline; }
+        .breaking-news { background-color: #dc2626; color: white; padding: 10px; font-weight: bold; overflow: hidden; }
+        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
+        .main-card { background-color: #1e293b; padding: 25px; border-radius: 12px; border: 1px solid #334155; }
+        .main-card h2 { color: #facc15; margin-bottom: 15px; }
+        .main-card p { line-height: 1.7; color: #cbd5e1; }
+        .form-section { background-color: #1e293b; padding: 25px; border-radius: 12px; border: 1px solid #334155; margin-top: 25px; }
+        .form-section h3 { color: #38bdf8; margin-bottom: 15px; }
+        input, textarea { width: 100%; padding: 12px; margin-bottom: 15px; background-color: #0f172a; border: 1px solid #475569; color: white; border-radius: 6px; }
+        button { background-color: #16a34a; color: white; padding: 12px 25px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; width: 100%; }
+        button:hover { background-color: #15803d; }
+        .sidebar { background-color: #1e293b; padding: 25px; border-radius: 12px; border: 1px solid #334155; height: fit-content; }
+        .sidebar h3 { color: #facc15; margin-bottom: 15px; border-bottom: 2px solid #facc15; padding-bottom: 8px; }
+        .sidebar-item { padding: 12px 0; border-bottom: 1px solid #334155; }
+        .sidebar-item a { color: #cbd5e1; text-decoration: none; }
+        .sidebar-item a:hover { color: #38bdf8; }
+        footer { background-color: #1e3a8a; color: white; text-align: center; padding: 20px; margin-top: 50px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🏆 GOAL.UZ | FUTBOL DUNYOSI PORTALI</h1>
+    </header>
+
+    <nav>
+        <a href="#">Bosh Sahifa</a>
+        <a href="#">ECHL Yangiliklari</a>
+        <a href="#">La Liga</a>
+        <a href="#">Angliya Premyer Ligasi</a>
+    </nav>
+
+    <div class="breaking-news">
+        <marquee behavior="scroll" direction="left">⚡ TEZKOR: Mbappé jarohat oldi! | 🥇 O'zbekiston milliy terma jamoasi navbatdagi g'alabasini qo'lga kiritdi! | 🔥 Chempionlar Ligasida yangi mavsum start olmoqda!</marquee>
+    </div>
+
+    <div class="container">
+        <div class="main-card">
+            <h2>Hozircha futbol yangiliklari mavjud emas.</h2>
+            <p>Tizimga birinchi bo'lib qaynoq xabar qo'shing! Quyidagi formani to'ldirib, o'z yangiligingizni chop etishingiz mumkin.</p>
+
+            <div class="form-section">
+                <h3>✍️ Qaynoq futbol yangiligi qo'shish</h3>
+                <form>
+                    <input type="text" placeholder="Yangilik sarlavhasi (Masalan: Mbappé jarohat oldi)">
+                    <input type="text" placeholder="Kategoriya / Liga (Masalan: La Liga, YECHL)">
+                    <textarea rows="5" placeholder="Xabar tafsilotlarini bu yerga yozing..."></textarea>
+                    <button type="button" onclick="alert('Yangilik muvaffaqiyatli yuborildi!')">🚀 Yangilikni Chop Etish</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <h3>🔥 TOP Yangiliklar</h3>
+            <div class="sidebar-item"><a href="#">1. O'zbekistonlik futbolchi Yevropa klubiga o'tmoqda.</a></div>
+            <div class="sidebar-item"><a href="#">2. El-Klasiko uchrashuvi sanasi rasman e'lon qilindi.</a></div>
+            <div class="sidebar-item"><a href="#">3. Oltin to'p mukofotiga yangi da'vogarlar ro'yxati.</a></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 GOAL.UZ Portali. Barcha huquqlar himoyalangan.</p>
+    </footer>
+
+</body>
+</html>

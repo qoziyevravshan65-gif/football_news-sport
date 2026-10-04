@@ -1,1 +1,263 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futbol Yangiliklari, Live-Score va Turnir Jadvali</title>
+    <style>
+        /* 1. UMUMIY BAZAVIY DIZAYN (DARK FOOTBALL THEME) */
+        body {
+            background-color: #080810;
+            color: #f1f1f5;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
+        /* 2. TOP LIVE-SCORE PANEL */
+        .live-ticker {
+            width: 100%;
+            background: linear-gradient(90deg, #101026, #1a1a3a);
+            border-bottom: 2px solid #00ff66;
+            padding: 10px 0;
+            overflow-x: auto;
+            white-space: nowrap;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+        }
+        .match-box {
+            background: #121225;
+            border: 1px solid #232343;
+            padding: 6px 15px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+        }
+        .live-badge {
+            background-color: #ff3366;
+            color: white;
+            font-size: 10px;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+            animation: blink 1.5s infinite;
+        }
+        @keyframes blink { 0% {opacity:0.3;} 50% {opacity:1;} 100% {opacity:0.3;} }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            margin: 25px 0 10px 0;
+        }
+        header h1 {
+            color: #00ff66;
+            margin: 0;
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* ASOSIY KONTEYNER (BLOKLAR JOYLASHUVI) */
+        .main-container {
+            width: 100%;
+            max-width: 480px;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        /* 3. MINI TURNIR JADVALI */
+        .table-card {
+            background-color: #121225;
+            border: 1px solid #232343;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .table-card h4 { margin: 0 0 10px 0; color: #00ff66; font-size: 15px; }
+        .mini-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .mini-table th { color: #a0a0b0; text-align: left; padding-bottom: 8px; }
+        .mini-table td { padding: 8px 0; border-bottom: 1px solid #1f1f3a; }
+
+        /* 4. ADMIN PANEL (PAROL TIZIMI BILAN) */
+        .form-container {
+            background-color: #121225;
+            border: 1px solid #232343;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        .form-container h3 { color: #00ff66; margin-top: 0; margin-bottom: 15px; font-size: 17px; }
+        .input-field {
+            width: 100%;
+            padding: 11px;
+            margin-bottom: 12px;
+            background-color: #0f0f1e;
+            border: 1px solid #1f1f3a;
+            border-radius: 6px;
+            color: white;
+            font-size: 14px;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+        .input-field:focus { border-color: #00ff66; outline: none; }
+        textarea.input-field { height: 90px; resize: none; }
+        .submit-btn {
+            background-color: #00ff66;
+            color: #080810;
+            border: none;
+            border-radius: 6px;
+            padding: 12px;
+            width: 100%;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+        .submit-btn:hover { background-color: #00dd55; transform: translateY(-1px); }
+
+        /* 5. YANGILIKLAR KARTASI VA ELEMENTLARI */.news-card {
+            background-color: #121225;
+            border: 1px solid #232343;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .news-tag {
+            font-size: 11px;
+            color: #00ff66;
+            font-weight: bold;
+            text-transform: uppercase;
+            background: rgba(0,255,102,0.1);
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+        .news-title { font-size: 19px; margin: 12px 0 10px 0; line-height: 1.4; color: #ffffff; }
+        .news-img { width: 100%; border-radius: 8px; margin-top: 5px; display: block; }
+        .img-caption {
+            font-size: 12.5px;
+            color: #a0a0b0;
+            font-style: italic;
+            margin: 8px 0 12px 0;
+            padding-left: 8px;
+            border-left: 2px solid #00ff66;
+        }
+        .news-details { font-size: 14px; color: #d1d1e0; line-height: 1.6; white-space: pre-wrap; margin-bottom: 12px; }
+        .read-more-btn { color: #00ff66; text-decoration: none; font-size: 13.5px; font-weight: bold; display: inline-block; margin-bottom: 10px; }
+        .read-more-btn:hover { text-decoration: underline; }
+
+        /* REAKSIYALAR BO'LIMI */
+        .news-actions {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #1f1f3a;
+        }
+        .action-btn {
+            background: none;
+            border: none;
+            color: #a0a0b0;
+            cursor: pointer;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.2s;
+        }
+        .action-btn:hover { color: #00ff66; }
+        .action-btn.liked { color: #ff3366 !important; font-weight: bold; }
+
+        /* KOMMENTARIYA OYNASI (DETALIZATSIYA) */
+        .comments-box {
+            margin-top: 15px;
+            background-color: #0f0f1e;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #1f1f3a;
+        }
+        .comment-item {
+            font-size: 13px;
+            border-bottom: 1px solid #1f1f3a;
+            padding: 8px 0;
+        }
+        .comment-user { color: #00ff66; font-weight: bold; margin-right: 5px; }
+        .comment-text { color: #d1d1e0; }
+        .comment-input-group { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+        .comment-row { display: flex; gap: 6px; }
+        
+        /* ADMIN TOMONIDAN XABARNI O'CHIRISH TUGMASI */
+        .delete-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #ff3366;
+            cursor: pointer;
+            font-size: 12px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. LIVE MATCH TICKER (JONLI TABLO) -->
+    <div class="live-ticker">
+        <div class="match-box"><span class="live-badge">74'</span> <span>Real Madrid</span> <b>2 - 1</b> <span>Atletiko</span></div>
+        <div class="match-box"><span class="live-badge">42'</span> <span>Barselona</span> <b>1 - 0</b> <span>Sevilya</span></div>
+    </div>
+
+    <header>
+        <h1>🏆 Champions Sport</h1>
+    </header>
+
+    <div class="main-container">
+
+        <!-- 2. MINI TURNIR JADVALI (LA LIGA) -->
+        <div class="table-card">
+            <h4>📊 Ispaniya La Liga • Turnir jadvali</h4>
+            <table class="mini-table">
+                <thead><tr><th>T/r</th><th>Jamoa</th><th>O'</th><th>Ochko</th></tr></thead>
+                <tbody>
+                    <tr><td>1</td><td><b>Barselona</b></td><td>8</td><td><b>21</b></td></tr>
+                    <tr><td>2</td><td><b>Real Madrid</b></td><td>8</td><td><b>20</b></td></tr>
+                    <tr><td>3</td><td><b>Atletiko M</b></td><td>8</td><td><b>17</b></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 3. ADMIN PANEL (FOTO VA MATN FAQAT EGASIGA) -->
+        <div class="form-container">
+            <h3>🛡️ Sayt Egasi & Admin Paneli</h3>
+            <input type="password" id="admin-pass" class="input-field" placeholder="Admin maxfiy parolini kiriting">
+            <input type="text" id="news-title" class="input-field" placeholder="Yangilik sarlavhasi">
+            <input type="text" id="news-cat" class="input-field" placeholder="Kategoriya (Masalan: La Liga)">
+            
+            <label style="font-size: 12px; color: #a0a0b0; display:block; margin-bottom:5px;">Fotosurat yuklash (Qurilmadan):</label>
+            <input type="file" id="news-file" class="input-field" accept="image/*">
+            
+            <input type="text" id="news-caption" class="input-field" placeholder="Rasm ostidagi matn (izoh)">
+            <input type="url" id="news-link" class="input-field" placeholder="Batafsil ma'lumot havolasi (URL)">
+            <textarea id="news-details" class="input-field" placeholder="Batafsil maqola tafsilotlarini kiriting..."></textarea>
+            
+            <button class="submit-btn" onclick="addNewPost()">🚀 Yangilikni Doimiy Chop Etish</button>
+        </div>
+
+        <!-- YANGILIKLAR LENTASI -->
+        <div class="news-feed" id="news-feed-container">
+            
+            <!-- 4. DOIMIY ASOSIY YANGILIK (EL-KLASIKO - BU KODNING O'ZIDA HARD-CODED SAQLANADI) -->
+            <div class="news-card" data-id="static_el_clasico">
+                <span class="news-tag">LA LIGA / ISPANIYA</span>
+                <h3 class="news-title">Dunyo futboli diqqat markazida: Navbatdagi "El-Klasiko" sanasi rasman e'lon qilindi!</h3>
+                <img src="https://marca.com" class="news-img" alt="El Clasico">

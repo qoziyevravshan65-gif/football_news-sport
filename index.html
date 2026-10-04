@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Futbol Yangiliklari Portali</title>
+    <title>Futbol Yangiliklari — MARCA Live Feed</title>
     <style>
         /* TOZA VA PROFESSIONAL QORA SPORT DIZAYNI */
         body {
@@ -17,10 +17,10 @@
             margin: 0;
         }
 
-        /* 1. KATTA EKRANDA FUTBOLCHILARNING ALMASHIB TURUVCHI BANNERI (SLIDESHOW) */
+        /* KATTA EKRANDA ALMASHIB TURUVCHI SLIDER */
         .football-slider {
             width: 100%;
-            max-width: 420px;
+            max-width: 450px;
             height: 230px;
             border-radius: 12px;
             overflow: hidden;
@@ -63,14 +63,14 @@
             text-shadow: 1px 1px 3px black;
         }
 
-        /* YANGILIK QO'SHISH ANKETASI */
+        /* ADMIN PANEL ANKETASI */
         .form-container {
             background-color: #121225;
             border: 1px solid #232343;
             border-radius: 10px;
             padding: 20px;
             width: 100%;
-            max-width: 420px;
+            max-width: 450px;
             box-sizing: border-box;
             margin-bottom: 25px;
         }
@@ -80,7 +80,6 @@
             margin-bottom: 15px;
         }
 
-        /* ELEMENTLAR OYNASI */
         .input-field {
             width: 100%;
             padding: 10px;
@@ -92,15 +91,9 @@
             box-sizing: border-box;
             font-size: 14px;
         }
-        .input-field:focus {
-            border-color: #00ff66;
-            outline: none;
-        }
-        textarea.input-field {
-            height: 90px;
-        }
+        .input-field:focus { border-color: #00ff66; outline: none; }
+        textarea.input-field { height: 90px; }
 
-        /* CHOP ETISH TUGMASI */
         .submit-btn {
             background-color: #00ff66;
             color: #0b0b16;
@@ -111,16 +104,13 @@
             font-weight: bold;
             cursor: pointer;
             font-size: 15px;
-            transition: 0.2s;
         }
-        .submit-btn:hover {
-            background-color: #00dd55;
-        }
+        .submit-btn:hover { background-color: #00dd55; }
 
-        /* YANGILIKLAR TASMASI */
+        /* YANGILIKLAR TASMASI (KARTALAR) */
         .news-feed {
             width: 100%;
-            max-width: 420px;
+            max-width: 450px;
         }
         .news-card {
             background-color: #121225;
@@ -145,7 +135,7 @@
             border-left: 2px solid #00ff66;
         }
 
-        /* REAKSIYALAR */
+        /* REAKSIYALAR BO'LIMI */
         .news-actions {
             display: flex;
             justify-content: space-around;
@@ -163,13 +153,8 @@
             align-items: center;
             gap: 5px;
         }
-        .action-btn:hover {
-            color: #00ff66;
-        }
-        .action-btn.liked {
-            color: #ff3366 !important;
-            font-weight: bold;
-        }
+        .action-btn:hover { color: #00ff66; }
+        .action-btn.liked { color: #ff3366 !important; font-weight: bold; }
         .read-more {
             display: inline-block;
             color: #00ff66;
@@ -191,11 +176,7 @@
             padding: 5px 0;
             color: #d0d0e0;
         }
-        .comment-input-box {
-            display: flex;
-            gap: 5px;
-            margin-top: 10px;
-        }
+        .comment-input-box { display: flex; gap: 5px; margin-top: 10px; }
         .comment-input {
             flex: 1;
             padding: 6px;
@@ -206,76 +187,66 @@
             font-size: 12px;
         }
         .comment-btn {
-            background: #00ff66;
-            color: black;
-            border: none;
-            padding: 0 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: bold;
+            background: #00ff66; color: black; border: none; padding: 0 10px;
+            border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold;
         }
         .delete-btn {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            color: #ff3366;
-            cursor: pointer;
-            font-size: 12px;
-            display: none;
+            position: absolute; top: 15px; right: 15px; background: none;
+            border: none; color: #ff3366; cursor: pointer; font-size: 12px; display: none;
+        }
+        .source-badge {
+            font-size: 10px; background-color: #ffcc00; color: black;
+            padding: 2px 6px; border-radius: 4px; font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. KATTA EKRANDA ALMASHIB TURUVCHI JONLI SLIDER -->
+    <!-- KATTA EKRANDA ALMASHIB TURUVCHI JONLI SLIDER -->
     <div class="football-slider">
         <div class="slides-container">
             <div class="slide active">
-                <img src="https://picsum.photos" alt="Ronaldu">
-                <div class="slide-title">🔥 Chempionlar Ligasi qaytmoqda!</div>
+                <img src="https://picsum.photos" alt="CL">
+                <div class="slide-title">🔥 Yevropa Chempionlar Ligasi qayg'usi va quvonchi!</div>
             </div>
             <div class="slide">
                 <img src="https://marca.com" alt="El Clasico">
-                <div class="slide-title">🏆 El-Klasiko bahsi yaqinlashmoqda!</div>
+                <div class="slide-title">🏆 Buyuk Klasiko uchrashuvi sanasi yaqin!</div>
             </div>
             <div class="slide">
                 <img src="https://picsum.photos" alt="Lamine Yamal">
-                <div class="slide-title">⚡ Yosh yulduzlar yashil maydonda jang qilmoqda!</div>
-            </div>
-            <div class="slide">
-                <img src="https://picsum.photos" alt="Stadion">
-                <div class="slide-title">🏟️ Buyuk stadionlar uchrashuvlarga tayyor!</div>
+                <div class="slide-title">⚡ Yosh iqtidorlar futbol olamini zabt etmoqda!</div>
             </div>
         </div>
     </div>
 
-    <!-- ANKETA PANELI -->
+    <!-- ADMIN PANEL -->
     <div class="form-container">
-        <h3>⚽ Qaynoq futbol yangiligi qo'shish</h3>
+        <h3>⚽ Shaxsiy xabar va rasm yuklash</h3>
         <input type="password" id="admin-password" class="input-field" placeholder="Admin parolini kiriting (2026)">
         <input type="text" id="title-input" class="input-field" placeholder="Yangilik sarlavhasi">
         <input type="text" id="category-input" class="input-field" placeholder="Kategoriya / Liga">
         
-        <label style="font-size: 12px; color: #a0a0b0; display:block; margin-bottom:5px;">Yangilik rasmini yuklang:</label>
+        <label style="font-size: 12px; color: #a0a0b0; display:block; margin-bottom:5px;">Fotosurat tanlang:</label>
         <input type="file" id="image-file-input" class="input-field" accept="image/*">
         
-        <input type="text" id="caption-input" class="input-field" placeholder="Rasm ostidagi matn (izoh)">
+        <input type="text" id="caption-input" class="input-field" placeholder="Rasm ostidagi qisqa matn">
         <input type="url" id="link-input" class="input-field" placeholder="Batafsil ma'lumot havolasi (URL)">
-        <textarea id="details-input" class="input-field" placeholder="Xabar tafsilotlarini bu yerga yozing..."></textarea>
+        <textarea id="details-input" class="input-field" placeholder="Batafsil xabar tafsilotlarini bu yerga yozing..."></textarea>
         
-        <button class="submit-btn" onclick="publishNews()">Yangilikni Chop Etish</button>
+        <button class="submit-btn" onclick="publishNews()">🚀 Yangilikni Chop Etish</button>
     </div>
 
     <!-- YANGILIKLAR TASMASI -->
     <div class="news-feed" id="news-feed-container">
         
-        <!-- DOIMIY EL-KLASIKO XABARI -->
+        <!-- DOIMIY EL-KLASIKO XABARI (HAR DOIM TURADI) -->
         <div class="news-card" data-id="el_clasico_2026">
-            <span style="font-size: 12px; color: #00ff66; font-weight:bold;">LA LIGA / ISPANIYA</span>
-            <h3 style="margin: 5px 0 10px 0; font-size: 20px;">Dunyo futboli diqqat markazida: Navbatdagi "El-Klasiko" sanasi rasman e'lon qilindi!</h3>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size: 12px; color: #00ff66;font-weight:bold;">LA LIGA / ISPANIYA</span>
+                <span class="source-badge" style="background:#00ff66;">Asosiy</span>
+            </div>
+            <h3 style="margin: 8px 0 10px 0; font-size: 20px;">Dunyo futboli diqqat markazida: Navbatdagi "El-Klasiko" sanasi rasman e'lon qilindi!</h3>
             <img src="https://marca.com" alt="El Clasico">
             <div class="img-caption">⚽ "Spotify Camp Nou" stadioni uzoq kutilgan buyuk to‘qnashuvga mezbonlik qiladi.</div>
             <p style="font-size: 14px; color: #d0d0e0; line-height: 1.6; white-space: pre-wrap;">La Liganing rasmiy taqvimiga ko‘ra, joriy mavsumdagi ilk to‘qnashuv 2026-yilning 25-oktabr, yakshanba kuni Barselonadagi muhtasham "Spotify Camp Nou" stadionida bo‘lib o‘tadi.</p>
@@ -284,3 +255,7 @@
             <div class="news-actions">
                 <button class="action-btn" onclick="toggleLike('el_clasico_2026', this)">❤️ <span class="like-count">0</span></button>
                 <button class="action-btn" onclick="toggleComments('el_clasico_2026')">💬 <span class="comment-count">0</span></button>
+                <button class="action-btn" onclick="navigator.clipboard.writeText(window.location.href); alert('Havola nusxalandi!');">↪️ Share</button>
+            </div>
+            <div class="comments-section" id="comments_el_clasico_2026" style="display:none;">
+                <div class="comments-list" id="list_el_clasico_2026"></div>

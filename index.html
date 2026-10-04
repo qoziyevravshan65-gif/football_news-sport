@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Futbol Yangiliklari — MARCA Live Feed</title>
+    <title>Futbol Yangiliklari Portali</title>
     <style>
         /* TOZA VA PROFESSIONAL QORA SPORT DIZAYNI */
         body {
@@ -107,6 +107,27 @@
         }
         .submit-btn:hover { background-color: #00dd55; }
 
+        /* FUTBOL TV JONLI TELEGRAM OYNASI DIZAYNI */
+        .telegram-widget-container {
+            width: 100%;
+            max-width: 450px;
+            background-color: #121225;
+            border: 1px solid #232343;
+            border-radius: 12px;
+            padding: 15px;
+            box-sizing: border-box;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0, 136, 204, 0.2);
+        }
+        .telegram-widget-container h4 {
+            margin: 0 0 12px 0;
+            color: #0088cc;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+        }
+
         /* YANGILIKLAR TASMASI (KARTALAR) */
         .news-feed {
             width: 100%;
@@ -119,8 +140,7 @@
             padding: 20px;
             margin-bottom: 20px;
             position: relative;
-        }
-        .news-card img {
+        }.news-card img {
             width: 100%;
             border-radius: 6px;
             margin-top: 10px;
@@ -195,7 +215,7 @@
             border: none; color: #ff3366; cursor: pointer; font-size: 12px; display: none;
         }
         .source-badge {
-            font-size: 10px; background-color: #ffcc00; color: black;
+            font-size: 10px; background-color: #00ff66; color: black;
             padding: 2px 6px; border-radius: 4px; font-weight: bold;
         }
     </style>
@@ -237,25 +257,27 @@
         <button class="submit-btn" onclick="publishNews()">🚀 Yangilikni Chop Etish</button>
     </div>
 
-    <!-- YANGILIKLAR TASMASI -->
+    <!-- SIZ SO'RAGAN 2-VARIANT: FUTBOL TV JONLI TELEGRAM OYNASI -->
+    <div class="telegram-widget-container">
+        <h4>🔹 Futbol TV • Jonli Xabarlar Tasmasi</h4>
+        <!-- Telegram rasmiy vidjeti ulandi. U kanal xabarlarini real vaqtda o'qib beradi -->
+        <script async src="https://telegram.org" 
+                data-telegram="futboltv_official" 
+                data-width="100%" 
+                data-height="400px" 
+                data-dark="1">
+        </script>
+    </div>
+
+    <!-- YANGILIKLAR TASMASI (SHAXSIY POSTLARINGIZ CHIQADIGAN JOY) -->
     <div class="news-feed" id="news-feed-container">
         
-        <!-- DOIMIY EL-KLASIKO XABARI (HAR DOIM TURADI) -->
+        <!-- DOIMIY EL-KLASIKO XABARI -->
         <div class="news-card" data-id="el_clasico_2026">
             <div style="display:flex; justify-content:space-between; align-items:center;">
-                <span style="font-size: 12px; color: #00ff66;font-weight:bold;">LA LIGA / ISPANIYA</span>
-                <span class="source-badge" style="background:#00ff66;">Asosiy</span>
+                <span style="font-size: 12px; color: #00ff66; font-weight:bold;">LA LIGA / ISPANIYA</span>
+                <span class="source-badge">Asosiy</span>
             </div>
             <h3 style="margin: 8px 0 10px 0; font-size: 20px;">Dunyo futboli diqqat markazida: Navbatdagi "El-Klasiko" sanasi rasman e'lon qilindi!</h3>
             <img src="https://marca.com" alt="El Clasico">
             <div class="img-caption">⚽ "Spotify Camp Nou" stadioni uzoq kutilgan buyuk to‘qnashuvga mezbonlik qiladi.</div>
-            <p style="font-size: 14px; color: #d0d0e0; line-height: 1.6; white-space: pre-wrap;">La Liganing rasmiy taqvimiga ko‘ra, joriy mavsumdagi ilk to‘qnashuv 2026-yilning 25-oktabr, yakshanba kuni Barselonadagi muhtasham "Spotify Camp Nou" stadionida bo‘lib o‘tadi.</p>
-            <a href="https://marca.com" target="_blank" class="read-more">Batafsil o'qish ➔</a>
-            
-            <div class="news-actions">
-                <button class="action-btn" onclick="toggleLike('el_clasico_2026', this)">❤️ <span class="like-count">0</span></button>
-                <button class="action-btn" onclick="toggleComments('el_clasico_2026')">💬 <span class="comment-count">0</span></button>
-                <button class="action-btn" onclick="navigator.clipboard.writeText(window.location.href); alert('Havola nusxalandi!');">↪️ Share</button>
-            </div>
-            <div class="comments-section" id="comments_el_clasico_2026" style="display:none;">
-                <div class="comments-list" id="list_el_clasico_2026"></div>
